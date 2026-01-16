@@ -1,9 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../pages/Landing.css';
 
 const Hero: React.FC = () => {
     const navigate = useNavigate();
+    const [hoveredAction, setHoveredAction] = useState<string | null>(null);
+
+    const handleDemo = () => {
+        // Scroll to preview section
+        const previewSection = document.querySelector('.preview-section');
+        if (previewSection) {
+            previewSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    };
+
+    const handleSampleInsights = () => {
+        // Scroll to preview section
+        const previewSection = document.querySelector('.preview-section');
+        if (previewSection) {
+            previewSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    };
 
     return (
         <section className="hero-section">
@@ -15,12 +32,39 @@ const Hero: React.FC = () => {
                 <p className="hero-supporting">
                     Built using Google AI. Powered by real exam data.
                 </p>
-                <button
-                    className="cta-primary"
-                    onClick={() => navigate('/login')}
-                >
-                    Get Started with Google
-                </button>
+                <div className="hero-cta-group">
+                    <button
+                        className="cta-primary"
+                        onClick={() => navigate('/login')}
+                    >
+                        Get Started with Google
+                    </button>
+                    <div className="hero-secondary-actions">
+                        <button
+                            className="hero-text-action"
+                            onClick={handleDemo}
+                            onMouseEnter={() => setHoveredAction('demo')}
+                            onMouseLeave={() => setHoveredAction(null)}
+                        >
+                            View demo
+                        </button>
+                        <span className="action-divider">•</span>
+                        <button
+                            className="hero-text-action"
+                            onClick={handleSampleInsights}
+                            onMouseEnter={() => setHoveredAction('insights')}
+                            onMouseLeave={() => setHoveredAction(null)}
+                        >
+                            See sample insights
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div className="hero-visual-anchor">
+                <div className="grid-pattern"></div>
+                <div className="card-ghost card-1"></div>
+                <div className="card-ghost card-2"></div>
+                <div className="chart-mock"></div>
             </div>
         </section>
     );

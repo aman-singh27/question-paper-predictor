@@ -26,12 +26,14 @@ const Subjects: React.FC = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const [userEmail, setUserEmail] = useState<string>('');
+    const [userPhoto, setUserPhoto] = useState<string>('');
 
     useEffect(() => {
         loadSubjects();
         const user = auth.currentUser;
         if (user?.email) {
             setUserEmail(user.email);
+            setUserPhoto(user.photoURL || '');
         }
     }, [yearId]);
 
@@ -91,8 +93,12 @@ const Subjects: React.FC = () => {
                         <button className="contributions-btn" disabled>
                             My Contributions
                         </button>
-                        <div className="user-avatar">
-                            <span>{userEmail ? getUserInitials(userEmail) : 'U'}</span>
+                        <div className="user-avatar" onClick={() => navigate('/profile')} style={{ cursor: 'pointer' }}>
+                            {userPhoto ? (
+                                <img src={userPhoto} alt="User" style={{ width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover' }} />
+                            ) : (
+                                <span>{userEmail ? getUserInitials(userEmail) : 'U'}</span>
+                            )}
                         </div>
                     </div>
                 </header>
@@ -178,7 +184,11 @@ const Subjects: React.FC = () => {
                         My Contributions
                     </button>
                     <div className="user-avatar" onClick={() => navigate('/profile')} style={{ cursor: 'pointer' }}>
-                        <span>{userEmail ? getUserInitials(userEmail) : 'U'}</span>
+                        {userPhoto ? (
+                            <img src={userPhoto} alt="User" style={{ width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover' }} />
+                        ) : (
+                            <span>{userEmail ? getUserInitials(userEmail) : 'U'}</span>
+                        )}
                     </div>
                 </div>
             </header>
