@@ -9,7 +9,7 @@ import UploadModal from '../components/UploadModal';
 import LoadingState from '../components/states/LoadingState';
 import EmptyState from '../components/states/EmptyState';
 import ErrorState from '../components/states/ErrorState';
-import { generateUniversityPaper, formatUniversityPaper } from '../utils/universityPaperGenerator';
+import { generateUniversityPaper, generateUniversityPaperHTML } from '../utils/universityPaperGenerator';
 import './SubjectInsights.css';
 
 interface Insights {
@@ -89,19 +89,17 @@ const SubjectInsights: React.FC = () => {
 
         // Generate the paper in university format
         const paper = generateUniversityPaper(insights.subject, insights);
-        const paperText = formatUniversityPaper(paper);
+        const paperHtml = generateUniversityPaperHTML(paper);
 
-        // Create a blob and download
-        const blob = new Blob([paperText], { type: 'text/plain' });
-        const url = URL.createObjectURL(blob);
-        const link = document.createElement('a');
-        link.href = url;
-        link.download = `${insights.subject.replace(/\s+/g, '_')}_MTE_Paper.txt`;
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-        URL.revokeObjectURL(url);
+        // Open in new window for printing
+        const printWindow = window.open('', '_blank');
+        if (printWindow) {
+            printWindow.document.write(paperHtml);
+            printWindow.document.close();
+            // The template body has onload="window.print()" which will trigger print dialog
+        }
     };
+
 
 
     // Loading State - Skeleton

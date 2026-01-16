@@ -314,3 +314,243 @@ Generated on: ${paper.generatedAt.toLocaleDateString()} at ${paper.generatedAt.t
 
     return output;
 }
+
+export function generateUniversityPaperHTML(paper: any): string {
+    return `
+<!DOCTYPE html>
+<html>
+<head>
+    <title>${paper.header.courseName} - ${paper.header.examTitle}</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 20mm;
+        }
+        body {
+            font-family: "Times New Roman", Times, serif;
+            font-size: 11pt;
+            line-height: 1.3;
+            color: #000;
+            max-width: 210mm;
+            margin: 0 auto;
+            background: white;
+        }
+        .header-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 5px;
+        }
+        .header-table td {
+            padding: 2px 0;
+            vertical-align: top;
+        }
+        .text-center { text-align: center; }
+        .text-right { text-align: right; }
+        .font-bold { font-weight: bold; }
+        .uppercase { text-transform: uppercase; }
+        
+        .university-header {
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 20px;
+            font-size: 12pt;
+        }
+        .university-header div { margin-bottom: 2px; }
+        
+        .exam-meta-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+        .exam-meta-table td {
+            padding: 4px 0;
+            vertical-align: top;
+        }
+        
+        .instructions {
+            margin-bottom: 20px;
+            padding-left: 0;
+        }
+        .instructions div { margin-bottom: 2px; }
+        
+        .section-header {
+            text-align: center;
+            font-weight: bold;
+            margin-top: 20px;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+        .section-subtitle {
+            text-align: center;
+            font-weight: normal;
+            font-size: 10pt;
+            margin-bottom: 15px;
+            text-transform: none;
+        }
+        
+        .question-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+        }
+        .question-table th {
+            text-align: left;
+            border-bottom: 1px solid #000;
+            padding: 5px;
+            font-weight: bold;
+            vertical-align: bottom;
+        }
+        .question-table td {
+            padding: 8px 5px;
+            vertical-align: top;
+        }
+        
+        .col-sno { width: 50px; }
+        .col-marks { width: 80px; text-align: center; }
+        .col-co { width: 40px; text-align: right; }
+        
+        .sub-question {
+            margin-left: 20px;
+            margin-top: 5px;
+            display: block;
+        }
+        
+        /* Print optimizations */
+        @media print {
+            body { 
+                width: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            .no-print { display: none; }
+        }
+    </style>
+</head>
+<body onload="window.print()">
+    <!-- Student Details Header -->
+    <table class="header-table" style="margin-bottom: 15px;">
+        <tr>
+            <td style="width: 50%;">Name: __________________________</td>
+            <td style="text-align: right;">Enrolment No: __________________</td>
+        </tr>
+    </table>
+
+    <!-- University Header -->
+    <div class="university-header">
+        <div>${paper.header.examTitle}</div>
+        <div>${paper.header.university}</div>
+        <div>${paper.header.school}</div>
+        <div>${paper.header.department}</div>
+        <div>${paper.header.program}</div>
+    </div>
+
+    <!-- Course Meta -->
+    <table class="exam-meta-table">
+        <tr>
+            <td style="width: 25%;">Course Code: ${paper.header.courseCode}</td>
+            <td style="width: 50%; text-align: center;">Course: ${paper.header.courseName}</td>
+            <td style="width: 25%; text-align: right;">Semester: ${paper.header.semester}</td>
+        </tr>
+        <tr>
+            <td>Time: ${paper.header.duration}</td>
+            <td></td>
+            <td style="text-align: right;">Max. Marks: ${paper.header.maxMarks}</td>
+        </tr>
+    </table>
+
+    <!-- Instructions -->
+    <div class="instructions">
+        <strong>Instructions:</strong>
+        ${paper.instructions.map((inst: string) => `<div>${inst}</div>`).join('')}
+    </div>
+
+    <!-- Section A -->
+    <div class="section-header">
+        ${paper.sections.sectionA.title}
+        <div class="section-subtitle">${paper.sections.sectionA.subtitle}</div>
+    </div>
+    
+    <table class="question-table">
+        <thead>
+            <tr>
+                <th class="col-sno">S. No.</th>
+                <th></th>
+                <th class="col-marks">Marks</th>
+                <th class="col-co">CO</th>
+            </tr>
+        </thead>
+        <tbody>
+            ${paper.sections.sectionA.questions.map((q: any) => `
+                <tr>
+                    <td class="font-bold">Q ${q.number}</td>
+                    <td>
+                        ${q.parts.map((p: any) => `
+                            <div style="margin-bottom: 5px;">${p.text}</div>
+                        `).join('')}
+                    </td>
+                    <td class="col-marks">[${q.parts[0].marks}]</td>
+                    <td class="text-right">${q.co}</td>
+                </tr>
+            `).join('')}
+        </tbody>
+    </table>
+
+    <!-- Section B -->
+    <div class="section-header">
+        ${paper.sections.sectionB.title}
+        <div class="section-subtitle">${paper.sections.sectionB.subtitle}</div>
+    </div>
+
+    <table class="question-table">
+        <tbody>
+            ${paper.sections.sectionB.questions.map((q: any) => `
+                <tr>
+                    <td class="col-sno font-bold">Q ${q.number}</td>
+                    <td>
+                        ${q.parts.map((p: any) => `
+                            <div style="margin-bottom: 8px;">
+                                ${p.text}
+                                ${p.subparts ? p.subparts.map((sp: string) => `<div class="sub-question">${sp}</div>`).join('') : ''}
+                            </div>
+                        `).join('')}
+                    </td>
+                    <td class="col-marks">[${q.parts[0].marks}]</td>
+                    <td class="col-co text-right">${q.co}</td>
+                </tr>
+            `).join('')}
+        </tbody>
+    </table>
+
+    <!-- Section C -->
+    <div class="section-header">
+        ${paper.sections.sectionC.title}
+        <div class="section-subtitle">${paper.sections.sectionC.subtitle}</div>
+    </div>
+
+    <table class="question-table">
+        <tbody>
+            ${paper.sections.sectionC.questions.map((q: any) => `
+                <tr>
+                    <td class="col-sno font-bold">Q ${q.number}</td>
+                    <td>
+                        ${q.parts.map((p: any) => `
+                            <div style="margin-bottom: 15px;">
+                                <div style="margin-bottom: 5px;"><strong>${p.label || ''}</strong> ${p.text}</div>
+                                ${p.subparts ? p.subparts.map((sp: string) => `<div class="sub-question">${sp}</div>`).join('') : ''}
+                            </div>
+                        `).join('')}
+                    </td>
+                    <td class="col-marks">[${q.parts.map((p: any) => p.marks).join(' + ')}]</td>
+                    <td class="col-co text-right">${q.co}</td>
+                </tr>
+            `).join('')}
+        </tbody>
+    </table>
+    
+    <div style="text-align: center; margin-top: 30px;">******</div>
+</body>
+</html>
+    `;
+}
+
