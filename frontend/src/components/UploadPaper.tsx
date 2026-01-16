@@ -1,13 +1,12 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { auth } from '../config/firebaseClient';
 import './UploadPaper.css';
 
 interface UploadPaperProps {
-    subjectId: string;
     isBootstrapping: boolean;
 }
 
-const UploadPaper: React.FC<UploadPaperProps> = ({ subjectId, isBootstrapping }) => {
+const UploadPaper: React.FC<UploadPaperProps> = ({ isBootstrapping }) => {
     const [file, setFile] = useState<File | null>(null);
     const [examYear, setExamYear] = useState('');
     const [examType, setExamType] = useState('');

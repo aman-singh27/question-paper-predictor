@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../pages/Landing.css';
 
 const Hero: React.FC = () => {
     const navigate = useNavigate();
-    const [hoveredAction, setHoveredAction] = useState<string | null>(null);
 
     const handleDemo = () => {
         // Scroll to preview section
@@ -43,8 +41,6 @@ const Hero: React.FC = () => {
                         <button
                             className="hero-text-action"
                             onClick={handleDemo}
-                            onMouseEnter={() => setHoveredAction('demo')}
-                            onMouseLeave={() => setHoveredAction(null)}
                         >
                             View demo
                         </button>
@@ -52,8 +48,6 @@ const Hero: React.FC = () => {
                         <button
                             className="hero-text-action"
                             onClick={handleSampleInsights}
-                            onMouseEnter={() => setHoveredAction('insights')}
-                            onMouseLeave={() => setHoveredAction(null)}
                         >
                             See sample insights
                         </button>

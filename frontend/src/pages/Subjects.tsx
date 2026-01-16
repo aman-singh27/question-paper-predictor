@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { auth } from '../config/firebaseClient';
 import { subjectsByYear } from '../data/mockData';
@@ -72,14 +72,7 @@ const Subjects: React.FC = () => {
         return email.charAt(0).toUpperCase();
     };
 
-    // Group subjects by category
-    const groupedSubjects = filteredSubjects.reduce((acc, subject) => {
-        if (!acc[subject.category]) {
-            acc[subject.category] = [];
-        }
-        acc[subject.category].push(subject);
-        return acc;
-    }, {} as Record<string, Subject[]>);
+
 
     // Loading state - skeleton cards
     if (loading) {

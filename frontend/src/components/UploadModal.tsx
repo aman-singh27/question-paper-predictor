@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { auth } from '../config/firebaseClient';
 import FileDropZone from './FileDropZone';
 import UploadStatus from './UploadStatus';
@@ -7,13 +7,11 @@ import './UploadModal.css';
 interface UploadModalProps {
     isOpen: boolean;
     onClose: () => void;
-    subjectId: string;
-    isBootstrapping: boolean;
 }
 
 type UploadState = 'form' | 'uploading' | 'success' | 'error';
 
-const UploadModal: React.FC<UploadModalProps> = ({ isOpen, onClose, subjectId, isBootstrapping }) => {
+const UploadModal: React.FC<UploadModalProps> = ({ isOpen, onClose }) => {
     const [uploadState, setUploadState] = useState<UploadState>('form');
     const [file, setFile] = useState<File | null>(null);
     const [examYear, setExamYear] = useState('');

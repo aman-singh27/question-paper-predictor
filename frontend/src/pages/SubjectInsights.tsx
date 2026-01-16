@@ -337,8 +337,6 @@ const SubjectInsights: React.FC = () => {
             <UploadModal
                 isOpen={uploadModalOpen}
                 onClose={() => setUploadModalOpen(false)}
-                subjectId={id || ''}
-                isBootstrapping={isBootstrapping}
             />
         </div>
     );
