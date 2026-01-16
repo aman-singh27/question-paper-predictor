@@ -1,9 +1,10 @@
 .upload-paper-container {
     background: white;
-    border: 2px solid #e0e0e0;
+    border: 1px solid #dadce0;
     border-radius: 8px;
     padding: 20px;
     margin-bottom: 30px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .upload-message {
@@ -13,27 +14,27 @@
 }
 
 .upload-message.bootstrapping {
-    background-color: #fff3cd;
-    border: 1px solid #ffc107;
-    color: #856404;
+    background-color: #fef7e0;
+    border: 1px solid #fbbc04;
+    color: #f57f17;
 }
 
 .upload-message.ready {
-    background-color: #d1ecf1;
-    border: 1px solid #17a2b8;
-    color: #0c5460;
+    background-color: #e8f0fe;
+    border: 1px solid #4285f4;
+    color: #1f6fd8;
 }
 
 .upload-message.success {
-    background-color: #d4edda;
-    border: 1px solid #28a745;
-    color: #155724;
+    background-color: #e6f4ea;
+    border: 1px solid #34a853;
+    color: #1e8e3e;
 }
 
 .upload-message.error {
-    background-color: #f8d7da;
-    border: 1px solid #dc3545;
-    color: #721c24;
+    background-color: #fce5e5;
+    border: 1px solid #ea4335;
+    color: #d33425;
 }
 
 .upload-message p {
@@ -54,16 +55,17 @@
 .form-group label {
     font-weight: 600;
     margin-bottom: 5px;
-    color: #333;
+    color: #202124;
 }
 
 .form-group input[type="file"],
 .form-group input[type="text"],
 .form-group select {
     padding: 8px;
-    border: 1px solid #ccc;
+    border: 1px solid #dadce0;
     border-radius: 4px;
     font-size: 14px;
+    color: #202124;
 }
 
 .file-selected {

@@ -2,12 +2,13 @@
 
 .profile-card {
     background-color: #ffffff;
-    border: 1px solid #e0e0e0;
+    border: 1px solid #dadce0;
     border-radius: 12px;
     padding: 48px 32px;
     text-align: center;
     max-width: 500px;
     margin: 0 auto 40px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .profile-avatar-large {
@@ -37,19 +38,19 @@
 .profile-name {
     font-size: 28px;
     font-weight: 600;
-    color: #1a1a1a;
+    color: #202124;
     margin: 0 0 8px 0;
 }
 
 .profile-email {
     font-size: 15px;
-    color: #8a8a8a;
+    color: #9aa0a6;
     margin: 0 0 24px 0;
 }
 
 .profile-contribution-count {
     font-size: 16px;
-    color: #4a4a4a;
+    color: #5f6368;
     margin: 0;
     padding: 16px 24px;
     background-color: #f8f9fa;

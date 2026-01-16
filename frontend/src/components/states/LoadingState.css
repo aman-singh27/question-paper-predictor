@@ -7,29 +7,45 @@
 }
 
 .skeleton-card {
-    background-color: #f0f0f0;
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
     border-radius: 8px;
     height: 150px;
-    animation: pulse 1.5s ease-in-out infinite;
+    animation: shimmer 2s infinite;
 }
 
 .skeleton-overview {
-    background-color: #f0f0f0;
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
     border-radius: 8px;
     height: 180px;
     margin-bottom: 32px;
-    animation: pulse 1.5s ease-in-out infinite;
+    animation: shimmer 2s infinite;
 }
 
-@keyframes pulse {
-
-    0%,
-    100% {
-        opacity: 1;
+@keyframes shimmer {
+    0% {
+        background-position: 200% 0;
     }
+    100% {
+        background-position: -200% 0;
+    }
+}
 
-    50% {
-        opacity: 0.6;
+/* Loading spinner */
+.loading-spinner {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    border: 3px solid #dadce0;
+    border-top-color: #4285f4;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
     }
 }
 

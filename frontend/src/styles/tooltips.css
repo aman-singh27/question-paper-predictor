@@ -1,0 +1,198 @@
+/* Tooltip & Hint System */
+
+/* Tooltip Base */
+.tooltip {
+    position: relative;
+    display: inline-block;
+    cursor: help;
+}
+
+.tooltip-trigger {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #e8f0fe;
+    color: #4285f4;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: help;
+    transition: all 0.2s ease;
+}
+
+.tooltip-trigger:hover {
+    background-color: #4285f4;
+    color: #ffffff;
+    box-shadow: 0 2px 8px rgba(66, 133, 244, 0.3);
+}
+
+.tooltip-content {
+    visibility: hidden;
+    width: 200px;
+    background-color: #202124;
+    color: #ffffff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 12px;
+    position: absolute;
+    z-index: 1000;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -100px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    font-size: 13px;
+    line-height: 1.4;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.tooltip-content::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #202124 transparent transparent transparent;
+}
+
+.tooltip:hover .tooltip-content {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Inline Hint */
+.hint-text {
+    display: inline-block;
+    font-size: 12px;
+    color: #9aa0a6;
+    margin-top: 4px;
+    font-style: italic;
+}
+
+/* Info Box */
+.info-box {
+    background-color: #e8f0fe;
+    border-left: 4px solid #4285f4;
+    padding: 12px 16px;
+    border-radius: 4px;
+    margin: 16px 0;
+    font-size: 14px;
+    color: #1f6fd8;
+}
+
+.info-box strong {
+    color: #4285f4;
+    font-weight: 600;
+}
+
+/* Help Badge */
+.help-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 8px;
+    background-color: #e8f0fe;
+    border-radius: 4px;
+    font-size: 12px;
+    color: #4285f4;
+    font-weight: 500;
+    cursor: help;
+}
+
+.help-badge:hover {
+    background-color: #4285f4;
+    color: #ffffff;
+}
+
+/* Keyboard Shortcut Hint */
+.keyboard-hint {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px;
+    background-color: #f1f3f4;
+    border: 1px solid #dadce0;
+    border-radius: 4px;
+    font-size: 12px;
+    color: #5f6368;
+    font-family: 'Monaco', 'Courier New', monospace;
+}
+
+.keyboard-hint kbd {
+    background-color: #ffffff;
+    border: 1px solid #dadce0;
+    border-radius: 3px;
+    padding: 2px 6px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    font-family: inherit;
+    font-weight: 500;
+}
+
+/* Feature Label */
+.feature-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 6px;
+    background-color: #e6f4ea;
+    border: 1px solid #34a853;
+    border-radius: 3px;
+    font-size: 11px;
+    color: #1e8e3e;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Status Indicator */
+.status-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    background-color: #f1f3f4;
+    border-radius: 16px;
+    font-size: 13px;
+    color: #5f6368;
+}
+
+.status-indicator::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #fbbc04;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.status-indicator.active::before {
+    background-color: #34a853;
+    animation: none;
+}
+
+.status-indicator.error::before {
+    background-color: #ea4335;
+    animation: none;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .tooltip-content {
+        width: 160px;
+        margin-left: -80px;
+        font-size: 12px;
+    }
+}

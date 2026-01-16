@@ -2,10 +2,17 @@
 
 .contribution-card {
     background-color: #ffffff;
-    border: 1px solid #e0e0e0;
+    border: 1px solid #dadce0;
     border-radius: 8px;
     padding: 20px 24px;
     margin-bottom: 12px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.contribution-card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-color: #4285f4;
 }
 
 .contribution-header {
@@ -18,13 +25,13 @@
 .contribution-subject {
     font-size: 16px;
     font-weight: 600;
-    color: #1a1a1a;
+    color: #202124;
     margin: 0;
 }
 
 .contribution-year {
     font-size: 14px;
-    color: #6a6a6a;
+    color: #5f6368;
     background-color: #f1f3f4;
     padding: 4px 12px;
     border-radius: 4px;
@@ -36,11 +43,11 @@
 }
 
 .contribution-status.used {
-    color: #1e8e3e;
+    color: #34a853;
 }
 
 .contribution-status.duplicate {
-    color: #8a8a8a;
+    color: #9aa0a6;
 }
 
 /* Mobile Responsive */

@@ -7,6 +7,8 @@ import Login from './pages/Login';
 import Subjects from './pages/Subjects';
 import SubjectInsights from './pages/SubjectInsights';
 import Profile from './pages/Profile';
+import './styles/material-design.css';
+import './styles/tooltips.css';
 
 function App() {
   return (
