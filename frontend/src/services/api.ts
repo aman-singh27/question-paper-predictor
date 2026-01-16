@@ -5,7 +5,7 @@ const API_BASE_URL = import.meta.env.VITE_API_BASE_URL ||
     'http://localhost:5001/hack-f1811/us-central1';
 
 // Toggle this to switch between mock and real API
-const USE_MOCK_DATA = true;
+const USE_MOCK_DATA = import.meta.env.VITE_USE_MOCK_DATA === 'true';
 
 /**
  * Get Firebase ID token for authenticated requests
