@@ -880,7 +880,8 @@
 .trust-strip {
     max-width: 1440px;
     margin: 0 auto;
-    padding: 120px 80px;
+    padding: 60px 80px 20px;
+    /* Reduced from 120px 80px */
     text-align: center;
     background-color: var(--color-bg);
 }
@@ -888,7 +889,8 @@
 .trust-text {
     font-size: 12px;
     color: var(--color-text-secondary);
-    margin: 0 0 40px 0;
+    margin: 0 0 24px 0;
+    /* Reduced from 40px */
     text-transform: uppercase;
     letter-spacing: 1.5px;
     font-weight: 600;
@@ -898,17 +900,19 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 60px;
+    gap: 40px;
+    /* Reduced from 60px */
     flex-wrap: wrap;
 }
 
 .trust-icon {
-    font-size: 17px;
+    font-size: 15px;
+    /* Slightly smaller */
     color: var(--color-text-secondary);
     display: flex;
     align-items: center;
-    gap: 10px;
-    font-weight: 400;
+    gap: 8px;
+    font-weight: 500;
     letter-spacing: -0.1px;
 }
 
@@ -916,7 +920,8 @@
 .final-cta-section {
     max-width: 1440px;
     margin: 0 auto;
-    padding: 120px 80px 200px;
+    padding: 40px 80px 100px;
+    /* Reduced from 120px 80px 200px */
     text-align: center;
 }
 
