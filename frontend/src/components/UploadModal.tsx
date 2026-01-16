@@ -84,7 +84,7 @@ const UploadModal: React.FC<UploadModalProps> = ({ isOpen, onClose, subjectId, i
             // Get auth token
             const token = await user.getIdToken();
             const API_BASE_URL = import.meta.env.VITE_API_BASE_URL ||
-                'http://localhost:5001/exam-intelligence-platform/us-central1';
+                'http://localhost:5001/hack-f1811/us-central1';
 
             // Send to backend
             const response = await fetch(`${API_BASE_URL}/analyzePaper`, {

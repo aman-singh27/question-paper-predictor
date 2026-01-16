@@ -11,6 +11,12 @@ export const verifyAuth = async (
     next: NextFunction
 ): Promise<void> => {
     try {
+        // Skip auth for OPTIONS requests (CORS preflight)
+        if (req.method === 'OPTIONS') {
+            next();
+            return;
+        }
+
         // Extract token from Authorization header
         const authHeader = req.headers.authorization;
 

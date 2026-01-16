@@ -9,6 +9,7 @@ import UploadModal from '../components/UploadModal';
 import LoadingState from '../components/states/LoadingState';
 import EmptyState from '../components/states/EmptyState';
 import ErrorState from '../components/states/ErrorState';
+import { generatePracticePaper, formatPaperAsText } from '../utils/paperGenerator';
 import './SubjectInsights.css';
 
 interface Insights {
@@ -82,6 +83,26 @@ const SubjectInsights: React.FC = () => {
     };
 
     const isBootstrapping = insights ? insights.paperCount < 5 : false;
+
+    const handleGeneratePaper = () => {
+        if (!insights) return;
+
+        // Generate the paper
+        const paper = generatePracticePaper(insights.subject, insights);
+        const paperText = formatPaperAsText(paper);
+
+        // Create a blob and download
+        const blob = new Blob([paperText], { type: 'text/plain' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = `${insights.subject.replace(/\s+/g, '_')}_Practice_Paper.txt`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+    };
+
 
     // Loading State - Skeleton
     if (loading) {
@@ -211,6 +232,9 @@ const SubjectInsights: React.FC = () => {
                             ? 'Insights are based on limited data and will improve as more papers are added'
                             : 'Insights are statistically reliable'}
                     </div>
+                    <button className="generate-paper-btn" onClick={handleGeneratePaper}>
+                        📄 Generate Practice Paper
+                    </button>
                 </div>
 
                 {/* Insight Sections */}

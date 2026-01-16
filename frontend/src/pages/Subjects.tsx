@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { auth } from '../config/firebaseClient';
-import { getSubjects } from '../services/api';
+import { subjectsByYear } from '../data/mockData';
 import SearchBar from '../components/SearchBar';
 import SubjectCard from '../components/SubjectCard';
 import LoadingState from '../components/states/LoadingState';
@@ -10,13 +10,15 @@ import ErrorState from '../components/states/ErrorState';
 import './Subjects.css';
 
 interface Subject {
-    subjectId: string;
-    subject: string;
-    paperCount: number;
-    status: 'ready' | 'bootstrapping';
+    id: string;
+    name: string;
+    status: 'ready' | 'coming-soon';
+    paperCount?: number;
+    category: string;
 }
 
 const Subjects: React.FC = () => {
+    const { branchId, yearId } = useParams<{ branchId: string; yearId: string }>();
     const navigate = useNavigate();
     const [subjects, setSubjects] = useState<Subject[]>([]);
     const [filteredSubjects, setFilteredSubjects] = useState<Subject[]>([]);
@@ -26,49 +28,56 @@ const Subjects: React.FC = () => {
     const [userEmail, setUserEmail] = useState<string>('');
 
     useEffect(() => {
-        fetchSubjects();
-        // Get user email for avatar
+        loadSubjects();
         const user = auth.currentUser;
         if (user?.email) {
             setUserEmail(user.email);
         }
-    }, []);
+    }, [yearId]);
 
     useEffect(() => {
-        // Client-side filtering (case-insensitive)
         if (searchQuery.trim() === '') {
             setFilteredSubjects(subjects);
         } else {
             const filtered = subjects.filter((subject) =>
-                subject.subject.toLowerCase().includes(searchQuery.toLowerCase())
+                subject.name.toLowerCase().includes(searchQuery.toLowerCase())
             );
             setFilteredSubjects(filtered);
         }
     }, [searchQuery, subjects]);
 
-    const fetchSubjects = async () => {
+    const loadSubjects = () => {
         try {
             setLoading(true);
-            const data = await getSubjects();
-            setSubjects(data);
-            setFilteredSubjects(data);
+            const yearSubjects = yearId ? subjectsByYear[yearId] || [] : [];
+            setSubjects(yearSubjects);
+            setFilteredSubjects(yearSubjects);
             setError(null);
         } catch (err) {
             setError('error');
             console.error(err);
         } finally {
-            setLoading(false);
+            setTimeout(() => setLoading(false), 300); // Simulate loading
         }
     };
 
-    const handleSubjectClick = (subjectId: string) => {
-        // Navigate to subject insights for both Ready and Bootstrapping
+    const handleSubjectClick = (subjectId: string, status: string) => {
+        if (status === 'coming-soon') return; // Don't navigate for coming soon
         navigate(`/subject/${subjectId}`);
     };
 
     const getUserInitials = (email: string) => {
         return email.charAt(0).toUpperCase();
     };
+
+    // Group subjects by category
+    const groupedSubjects = filteredSubjects.reduce((acc, subject) => {
+        if (!acc[subject.category]) {
+            acc[subject.category] = [];
+        }
+        acc[subject.category].push(subject);
+        return acc;
+    }, {} as Record<string, Subject[]>);
 
     // Loading state - skeleton cards
     if (loading) {

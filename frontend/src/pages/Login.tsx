@@ -11,7 +11,7 @@ const Login: React.FC = () => {
 
     useEffect(() => {
         if (user) {
-            navigate('/subjects');
+            navigate('/branches');
         }
     }, [user, navigate]);
 
