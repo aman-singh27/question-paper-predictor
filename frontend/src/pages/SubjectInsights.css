@@ -341,6 +341,51 @@
     line-height: 1.6;
 }
 
+/* FAQ Section */
+.faq-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.faq-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 12px;
+    background-color: #fafafa;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+}
+
+.faq-item:hover {
+    background-color: #f1f3f4;
+}
+
+.faq-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    background-color: #e8f0fe;
+    color: #4285f4;
+    border-radius: 50%;
+    font-size: 14px;
+    font-weight: 600;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.faq-text {
+    font-size: 15px;
+    color: #202124;
+    line-height: 1.5;
+}
+
 /* Contribution CTA */
 .contribution-cta {
     margin-top: 32px;

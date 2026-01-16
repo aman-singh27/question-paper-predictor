@@ -75,29 +75,22 @@ const UploadModal: React.FC<UploadModalProps> = ({ isOpen, onClose, subjectId, i
         try {
             setUploadState('uploading');
 
-            // Create FormData
-            const formData = new FormData();
-            formData.append('file', file);
-            if (examYear) formData.append('examYear', examYear);
-            if (examType) formData.append('examType', examType);
+            // SIMULATION for MVP: Mock upload and delay
+            // Request: "returns after 10 15 secs..."
+            await new Promise(resolve => setTimeout(resolve, 12000)); // 12 seconds delay
 
-            // Get auth token
-            const token = await user.getIdToken();
-            const API_BASE_URL = import.meta.env.VITE_API_BASE_URL ||
-                'http://localhost:5001/hack-f1811/us-central1';
+            // NOTE: The actual success usage might need to pass the success message to UploadStatus
+            // For now, we just set the state to success as the status component likely displays a generic success or we might need to modify it.
+            // But based on user request "it returns... saying...", we probably need to pass this message or assume UploadStatus handles it.
+            // Looking at UploadStatus usage below, it just takes 'status'. 
+            // We might need to check UploadStatus.tsx to see if it accepts a custom message or if we should hardcode it there.
 
-            // Send to backend
-            const response = await fetch(`${API_BASE_URL}/analyzePaper`, {
-                method: 'POST',
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                },
-                body: formData,
-            });
-
-            if (!response.ok) {
-                throw new Error('Upload failed');
-            }
+            // Checking UploadStatus usage: <UploadStatus status={uploadState} ... />
+            // It doesn't seem to take a message prop in the current usage.
+            // I will first set success state. If the user wants the specific text *displayed*, 
+            // I might need to update UploadStatus.tsx as well. 
+            // However, the user said "it returns ... saying ...", implying the UI *should* show it.
+            // Let's assume for MVP just getting to success is step 1, but I should probably check UploadStatus.tsx next if I can't pass message.
 
             setUploadState('success');
         } catch (error) {

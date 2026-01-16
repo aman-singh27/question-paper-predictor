@@ -45,34 +45,14 @@ const UploadPaper: React.FC<UploadPaperProps> = ({ subjectId, isBootstrapping })
             setUploading(true);
             setMessage(null);
 
-            // Create FormData to send file directly to backend
-            const formData = new FormData();
-            formData.append('file', file);
-            if (examYear) formData.append('examYear', examYear);
-            if (examType) formData.append('examType', examType);
+            // SIMULATION: Mock upload and analysis delay
+            // Request: "returns after 10 15 secs saying that paper analyzed..."
+            await new Promise(resolve => setTimeout(resolve, 12000)); // 12 seconds delay
 
-            // Get auth token
-            const token = await user.getIdToken();
-            const API_BASE_URL = import.meta.env.VITE_API_BASE_URL ||
-                'http://localhost:5001/hack-f1811/us-central1';
-
-            // Send file directly to backend
-            const response = await fetch(`${API_BASE_URL}/analyzePaper`, {
-                method: 'POST',
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                },
-                body: formData,
-            });
-
-            if (!response.ok) {
-                throw new Error('Backend processing failed');
-            }
-
-            // Show success message
+            // Mock Success Message
             setMessage({
                 type: 'success',
-                text: 'Paper uploaded successfully. Analysis in progress — insights will update automatically if this paper is new.',
+                text: 'Paper analyzed Year 2024 -25 \n CSE core Computer network \n ete paper',
             });
 
             // Reset form

@@ -180,6 +180,16 @@ export const mockSubjectInsights: Record<string, any> = {
             '2023': ['Process Scheduling'],
             '2024': ['Memory Management'],
         },
+        frequentlyAskedQuestions: [
+            "Explain the concept of virtual memory and demand paging with diagrams.",
+            "What is a deadlock? Explain the four necessary conditions for deadlock occurrence.",
+            "Differentiate between Preemptive and Non-preemptive scheduling algorithms.",
+            "Explain the critical section problem and Peterson's solution.",
+            "Describe the different states of a process with a state transition diagram.",
+            "Compare and contrast Paging and Segmentation memory management techniques.",
+            "What is Thrashing? What are its causes and how can it be prevented?",
+            "Explain the Banker's Algorithm for deadlock avoidance with an example."
+        ],
     },
     'computer-networks': {
         subject: 'Computer Networks',
@@ -205,6 +215,16 @@ export const mockSubjectInsights: Record<string, any> = {
         yearlyTrends: {
             '2023': ['Data Link Layer'],
         },
+        frequentlyAskedQuestions: [
+            "Explain the OSI reference model with functions of each layer.",
+            "What is the difference between TCP and UDP? When should each be used?",
+            "Explain the sliding window protocol for flow control.",
+            "Describe the process of IP addressing and Subnetting with examples.",
+            "What is congestion control? Explain the Leaky Bucket and Token Bucket algorithms.",
+            "Explain the mechanism of ARP and RARP protocols.",
+            "Differentiate between Circuit Switching and Packet Switching.",
+            "What is DNS? Explain the hierarchy of domain name space."
+        ],
     },
     'database-management': {
         subject: 'Database Management Systems',
@@ -236,6 +256,16 @@ export const mockSubjectInsights: Record<string, any> = {
             '2023': ['Normalization', 'Transactions'],
             '2024': ['SQL Queries', 'Indexing'],
         },
+        frequentlyAskedQuestions: [
+            "What is Normalization? Explain 1NF, 2NF, 3NF, and BCNF with examples.",
+            "Explain the ACID properties of a database transaction in detail.",
+            "Differentiate between Relational Algebra and Relational Calculus.",
+            "What is an ER diagram? Draw an ER diagram for a Library Management System.",
+            "Explain the difference between Primary Key, Foreign Key, and Candidate Key.",
+            "What is Indexing? Explain B-Trees and B+ Trees.",
+            "Describe the different types of Joins in SQL with examples.",
+            "Explain the Two-Phase Locking (2PL) protocol for concurrency control."
+        ],
     },
     'data-structures': {
         subject: 'Data Structures & Algorithms',
@@ -268,6 +298,16 @@ export const mockSubjectInsights: Record<string, any> = {
             '2023': ['Dynamic Programming', 'Graphs'],
             '2024': ['Trees', 'Hashing'],
         },
+        frequentlyAskedQuestions: [
+            "Explain the Quick Sort algorithm. Derive its time complexity.",
+            "What is a Binary Search Tree (BST)? Explain insertion and deletion operations.",
+            "Differentiate between DFS and BFS traversal with algorithms.",
+            "Explain the concept of Dynamic Programming with the 0/1 Knapsack problem.",
+            "What is a Hash Table? Explain collision resolution techniques.",
+            "Explain Dijkstra's algorithm for finding the shortest path in a graph.",
+            "What is a Stack? Explain its applications and implementation using arrays.",
+            "Explain the Heap Sort algorithm and heapify process."
+        ],
     },
     'software-engineering': {
         subject: 'Software Engineering',
@@ -297,6 +337,16 @@ export const mockSubjectInsights: Record<string, any> = {
             '2023': ['SDLC Models', 'Testing'],
             '2024': ['Design Patterns'],
         },
+        frequentlyAskedQuestions: [
+            "Compare and contrast the Waterfall Model and the Agile Model.",
+            "What is Software Testing? Differentiate between Black-box and White-box testing.",
+            "Explain the Singleton and Factory Design Patterns with code examples.",
+            "What is Requirement Engineering? Explain the steps involved.",
+            "Explain the concept of Coupling and Cohesion in software design.",
+            "What is a Use Case Diagram? Draw a use case diagram for an ATM system.",
+            "Explain the role of a Software Project Manager.",
+            "What is Maintenance? Explain the different types of software maintenance."
+        ],
     },
     'computer-architecture': {
         subject: 'Computer Architecture',
@@ -328,6 +378,16 @@ export const mockSubjectInsights: Record<string, any> = {
             '2023': ['Cache Memory', 'Memory Hierarchy'],
             '2024': ['Pipelining', 'Instruction Set'],
         },
+        frequentlyAskedQuestions: [
+            "What is Pipelining? Explain the hazards in pipelining.",
+            "Explain the concept of Cache Memory and different mapping techniques.",
+            "Differentiate between RISC and CISC architectures.",
+            "Explain the Von Neumann architecture with a block diagram.",
+            "What is Direct Memory Access (DMA)? Explain its working.",
+            "Explain the differnet addressing modes with examples.",
+            "What is an Instruction Set? Explain the instruction execution cycle.",
+            "Explain the Booth's Multiplication Algorithm."
+        ],
     },
 };
 

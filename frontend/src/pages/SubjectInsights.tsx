@@ -25,6 +25,7 @@ interface Insights {
     questionTypeDistribution: Record<string, number>;
     topicQuestionTypeMap: Record<string, string>;
     yearlyTrends: Record<string, string[]>;
+    frequentlyAskedQuestions?: string[];
 }
 
 const SubjectInsights: React.FC = () => {

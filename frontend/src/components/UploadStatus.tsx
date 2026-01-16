@@ -17,10 +17,11 @@ const UploadStatus: React.FC<UploadStatusProps> = ({ status, onRetry, onDone }) 
                         <path d="M8 12L11 15L16 9" stroke="#34a853" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                 </div>
-                <h3 className="status-title">Paper uploaded successfully.</h3>
+                <h3 className="status-title">Paper analyzed</h3>
                 <p className="status-message">
-                    We're analyzing it in the background.<br />
-                    If it's new, insights will update automatically.
+                    Year 2024 -25<br />
+                    CSE core Computer network<br />
+                    ETE paper
                 </p>
                 <button className="status-button primary" onClick={onDone}>
                     Done
