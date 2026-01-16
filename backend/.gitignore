@@ -3,3 +3,4 @@ lib/
 .env
 *.log
 .firebase/
+serviceAccount.json

@@ -1,7 +1,7 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "Firebase Cloud Functions backend for exam-intelligence-platform",
+  "description": "Firebase Cloud Functions backend for hack-f1811",
   "main": "lib/index.js",
   "scripts": {
     "build": "tsc",
@@ -9,7 +9,11 @@
     "shell": "npm run build && firebase functions:shell",
     "start": "npm run shell",
     "deploy": "firebase deploy --only functions",
-    "logs": "firebase functions:log"
+    "logs": "firebase functions:log",
+    "seed": "ts-node --project scripts/tsconfig.json --transpile-only scripts/seedFirestore.ts",
+    "seed:dry-run": "ts-node --project scripts/tsconfig.json --transpile-only scripts/seedFirestore.ts --dry-run",
+    "seed:force": "ts-node --project scripts/tsconfig.json --transpile-only scripts/seedFirestore.ts --force",
+    "seed:rollback": "ts-node --project scripts/tsconfig.json --transpile-only scripts/seedFirestore.ts --rollback"
   },
   "engines": {
     "node": ">=18"
@@ -31,10 +35,12 @@
   },
   "devDependencies": {
     "@types/express": "^4.17.21",
+    "@types/node": "^20.0.0",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
     "eslint": "^8.50.0",
     "eslint-config-google": "^0.14.0",
+    "ts-node": "^10.9.2",
     "typescript": "^5.2.2"
   }
 }
