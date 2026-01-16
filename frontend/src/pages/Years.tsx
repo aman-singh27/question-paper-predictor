@@ -8,6 +8,7 @@ const Years: React.FC = () => {
     const { branchId } = useParams<{ branchId: string }>();
     const navigate = useNavigate();
     const [userEmail, setUserEmail] = React.useState('');
+    const [userPhoto, setUserPhoto] = React.useState('');
 
     const years = branchId ? yearsByBranch[branchId] || [] : [];
 
@@ -15,6 +16,7 @@ const Years: React.FC = () => {
         const user = auth.currentUser;
         if (user?.email) {
             setUserEmail(user.email);
+            setUserPhoto(user.photoURL || '');
         }
     }, []);
 
@@ -35,7 +37,11 @@ const Years: React.FC = () => {
                 </div>
                 <div className="header-right">
                     <div className="user-avatar" onClick={() => navigate('/profile')} style={{ cursor: 'pointer' }}>
-                        <span>{userEmail ? getUserInitials(userEmail) : 'U'}</span>
+                        {userPhoto ? (
+                            <img src={userPhoto} alt="User" style={{ width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover' }} />
+                        ) : (
+                            <span>{userEmail ? getUserInitials(userEmail) : 'U'}</span>
+                        )}
                     </div>
                 </div>
             </header>
