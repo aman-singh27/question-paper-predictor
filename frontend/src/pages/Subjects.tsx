@@ -130,7 +130,7 @@ const Subjects: React.FC = () => {
                 </header>
 
                 <div className="subjects-container">
-                    <ErrorState onRetry={fetchSubjects} />
+                    <ErrorState onRetry={loadSubjects} />
                 </div>
             </div>
         );
@@ -205,9 +205,9 @@ const Subjects: React.FC = () => {
                     <div className="subjects-grid">
                         {filteredSubjects.map((subject) => (
                             <SubjectCard
-                                key={subject.subjectId}
+                                key={subject.id}
                                 subject={subject}
-                                onClick={() => handleSubjectClick(subject.subjectId)}
+                                onClick={() => handleSubjectClick(subject.id, subject.status)}
                             />
                         ))}
                     </div>
