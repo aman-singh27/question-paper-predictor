@@ -1,0 +1,52 @@
+/* Loading State - Skeleton Styles */
+
+.skeleton-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.skeleton-card {
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    height: 150px;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+.skeleton-overview {
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    height: 180px;
+    margin-bottom: 32px;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.6;
+    }
+}
+
+/* Subjects Grid Variant */
+.subjects-container .skeleton-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.subjects-container .skeleton-card {
+    height: 120px;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .subjects-container .skeleton-grid {
+        grid-template-columns: 1fr;
+    }
+}

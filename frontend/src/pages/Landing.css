@@ -1,0 +1,289 @@
+/* Landing Page - Minimal, Clean Design */
+
+.landing-page {
+    background-color: #ffffff;
+    color: #1a1a1a;
+    min-height: 100vh;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+}
+
+/* Hero Section */
+.hero-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 120px 24px 80px;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+}
+
+.hero-content {
+    max-width: 700px;
+}
+
+.hero-headline {
+    font-size: 56px;
+    font-weight: 700;
+    line-height: 1.1;
+    margin: 0 0 24px 0;
+    color: #1a1a1a;
+}
+
+.hero-subheadline {
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 1.4;
+    margin: 0 0 16px 0;
+    color: #4a4a4a;
+}
+
+.hero-supporting {
+    font-size: 16px;
+    color: #6a6a6a;
+    margin: 0 0 32px 0;
+}
+
+.cta-primary {
+    background-color: #4285f4;
+    color: #ffffff;
+    border: none;
+    padding: 14px 32px;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.cta-primary:hover {
+    background-color: #3367d6;
+}
+
+/* Problem Section */
+.problem-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 24px;
+    background-color: #fafafa;
+}
+
+.section-title {
+    font-size: 36px;
+    font-weight: 600;
+    text-align: center;
+    margin: 0 0 48px 0;
+    color: #1a1a1a;
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 32px;
+}
+
+.feature-card {
+    background-color: #ffffff;
+    padding: 32px;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+    transition: border-color 0.2s ease;
+}
+
+.feature-card:hover {
+    border-color: #4285f4;
+}
+
+.feature-icon {
+    font-size: 40px;
+    margin-bottom: 16px;
+}
+
+.feature-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0 0 12px 0;
+    color: #1a1a1a;
+}
+
+.feature-description {
+    font-size: 15px;
+    line-height: 1.5;
+    margin: 0;
+    color: #4a4a4a;
+}
+
+/* Solution Section */
+.solution-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 24px;
+}
+
+.solution-flow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+.solution-step {
+    flex: 1;
+    min-width: 200px;
+    max-width: 280px;
+    text-align: center;
+}
+
+.step-icon {
+    font-size: 48px;
+    margin-bottom: 16px;
+}
+
+.step-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0 0 8px 0;
+    color: #1a1a1a;
+}
+
+.step-description {
+    font-size: 14px;
+    color: #6a6a6a;
+    margin: 0;
+}
+
+.flow-arrow {
+    font-size: 32px;
+    color: #4285f4;
+    font-weight: 300;
+}
+
+/* Preview Section */
+.preview-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 24px;
+    background-color: #fafafa;
+}
+
+.insight-preview-card {
+    max-width: 500px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    padding: 32px;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+}
+
+.insight-subject {
+    font-size: 24px;
+    font-weight: 600;
+    margin: 0 0 24px 0;
+    color: #1a1a1a;
+}
+
+.insight-topics {
+    margin-bottom: 20px;
+}
+
+.insight-topic {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.topic-name {
+    font-size: 16px;
+    color: #1a1a1a;
+}
+
+.topic-percentage {
+    font-size: 18px;
+    font-weight: 600;
+    color: #4285f4;
+}
+
+.insight-note {
+    font-size: 14px;
+    color: #6a6a6a;
+    margin: 16px 0 0 0;
+    font-style: italic;
+}
+
+/* Tech Section */
+.tech-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 24px;
+    text-align: center;
+}
+
+.tech-text {
+    font-size: 14px;
+    color: #8a8a8a;
+    margin: 0;
+}
+
+/* Final CTA Section */
+.final-cta-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 24px 100px;
+    text-align: center;
+}
+
+.cta-secondary {
+    background-color: #1a1a1a;
+    color: #ffffff;
+    border: none;
+    padding: 14px 32px;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.cta-secondary:hover {
+    background-color: #333333;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .hero-section {
+        padding: 80px 20px 60px;
+        min-height: auto;
+    }
+
+    .hero-headline {
+        font-size: 36px;
+    }
+
+    .hero-subheadline {
+        font-size: 20px;
+    }
+
+    .section-title {
+        font-size: 28px;
+    }
+
+    .feature-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .solution-flow {
+        flex-direction: column;
+    }
+
+    .flow-arrow {
+        transform: rotate(90deg);
+    }
+
+    .problem-section,
+    .solution-section,
+    .preview-section {
+        padding: 60px 20px;
+    }
+}

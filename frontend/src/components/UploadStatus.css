@@ -1,0 +1,104 @@
+/* Upload Status Styles */
+
+.upload-status {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+/* Status Icon */
+.status-icon-container {
+    margin-bottom: 24px;
+}
+
+.status-icon {
+    animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Status Text */
+.status-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin: 0 0 12px 0;
+}
+
+.status-message {
+    font-size: 15px;
+    color: #6a6a6a;
+    margin: 0 0 32px 0;
+    line-height: 1.6;
+}
+
+/* Status Button */
+.status-button {
+    border: none;
+    padding: 12px 32px;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    font-family: inherit;
+}
+
+.status-button.primary {
+    background-color: #4285f4;
+    color: #ffffff;
+}
+
+.status-button.primary:hover {
+    background-color: #3367d6;
+}
+
+.status-button.secondary {
+    background-color: #f1f3f4;
+    color: #1a1a1a;
+}
+
+.status-button.secondary:hover {
+    background-color: #e8eaed;
+}
+
+/* Success State */
+.upload-status.success .status-icon {
+    color: #34a853;
+}
+
+/* Error State */
+.upload-status.error .status-icon {
+    color: #ea4335;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .upload-status {
+        padding: 32px 16px;
+    }
+
+    .status-title {
+        font-size: 18px;
+    }
+
+    .status-message {
+        font-size: 14px;
+    }
+
+    .status-button {
+        width: 100%;
+    }
+}

@@ -1,0 +1,108 @@
+/* File Drop Zone Styles */
+
+.file-drop-zone-container {
+    width: 100%;
+}
+
+.file-drop-zone {
+    border: 2px dashed #d0d0d0;
+    border-radius: 8px;
+    padding: 40px 20px;
+    text-align: center;
+    background-color: #fafafa;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.file-drop-zone:hover:not(.disabled) {
+    border-color: #4285f4;
+    background-color: #f8fbff;
+}
+
+.file-drop-zone.dragging {
+    border-color: #4285f4;
+    background-color: #e8f0fe;
+    border-style: solid;
+}
+
+.file-drop-zone.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.file-drop-zone.has-file {
+    border-color: #34a853;
+    background-color: #e6f4ea;
+}
+
+/* Drop Zone Content */
+.drop-zone-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.upload-icon {
+    color: #8a8a8a;
+    margin-bottom: 8px;
+}
+
+.drop-zone-title {
+    font-size: 16px;
+    font-weight: 500;
+    color: #1a1a1a;
+    margin: 0;
+}
+
+.drop-zone-subtitle {
+    font-size: 14px;
+    color: #4285f4;
+    margin: 0;
+}
+
+.drop-zone-helper {
+    font-size: 13px;
+    color: #8a8a8a;
+    margin: 8px 0 0 0;
+}
+
+/* File Selected Display */
+.file-selected-display {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    justify-content: center;
+}
+
+.file-icon {
+    color: #34a853;
+    flex-shrink: 0;
+}
+
+.file-name {
+    font-size: 15px;
+    color: #1a1a1a;
+    font-weight: 500;
+    word-break: break-all;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .file-drop-zone {
+        padding: 32px 16px;
+    }
+
+    .upload-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .drop-zone-title {
+        font-size: 15px;
+    }
+
+    .drop-zone-subtitle {
+        font-size: 13px;
+    }
+}

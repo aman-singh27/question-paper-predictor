@@ -1,0 +1,305 @@
+/* Subjects Page - Minimal, Clean Design */
+
+.subjects-page {
+    background-color: #ffffff;
+    min-height: 100vh;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+}
+
+/* Header */
+.subjects-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    border-bottom: 1px solid #e0e0e0;
+    background-color: #ffffff;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+}
+
+.app-name {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin: 0;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.contributions-btn {
+    background-color: transparent;
+    color: #8a8a8a;
+    border: 1px solid #e0e0e0;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 6px;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.user-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: #4285f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+/* Main Container */
+.subjects-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 40px 80px;
+}
+
+/* Page Title Section */
+.page-title-section {
+    margin-bottom: 32px;
+}
+
+.page-title {
+    font-size: 32px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin: 0 0 8px 0;
+}
+
+.page-subtitle {
+    font-size: 16px;
+    color: #6a6a6a;
+    margin: 0;
+}
+
+/* Search Bar */
+.search-bar-container {
+    margin-bottom: 32px;
+}
+
+.search-input {
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 16px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    background-color: #fafafa;
+    color: #1a1a1a;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: #4285f4;
+    background-color: #ffffff;
+}
+
+.search-input::placeholder {
+    color: #8a8a8a;
+}
+
+/* Subjects Grid */
+.subjects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+}
+
+/* Subject Card */
+.subject-card {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 20px;
+    cursor: pointer;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.subject-card:hover {
+    border-color: #4285f4;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* Ready subjects - slightly more prominent */
+.subject-card.ready {
+    border-color: #34a853;
+}
+
+.subject-card.ready:hover {
+    border-color: #2d8e47;
+    box-shadow: 0 2px 8px rgba(52, 168, 83, 0.15);
+}
+
+/* Bootstrapping subjects - don't feel broken */
+.subject-card.bootstrapping {
+    border-color: #fbbc04;
+}
+
+.subject-card.bootstrapping:hover {
+    border-color: #f9ab00;
+    box-shadow: 0 2px 8px rgba(251, 188, 4, 0.15);
+}
+
+.subject-card-content {
+    flex: 1;
+}
+
+.subject-name {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin: 0 0 8px 0;
+}
+
+.paper-count {
+    font-size: 14px;
+    color: #6a6a6a;
+    margin: 0;
+}
+
+/* Status Badge */
+.status-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.status-badge.ready {
+    background-color: #e6f4ea;
+    color: #1e8e3e;
+}
+
+.status-badge.bootstrapping {
+    background-color: #fef7e0;
+    color: #f9ab00;
+}
+
+/* Loading State - Skeleton Cards */
+.skeleton-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+}
+
+.skeleton-card {
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    height: 100px;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.6;
+    }
+}
+
+/* Error State */
+.error-state {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.error-state p {
+    font-size: 16px;
+    color: #ea4335;
+    margin: 0;
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.empty-state h3 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin: 0 0 12px 0;
+}
+
+.empty-state p {
+    font-size: 16px;
+    color: #6a6a6a;
+    margin: 0 0 24px 0;
+}
+
+.contribute-btn {
+    background-color: #e0e0e0;
+    color: #8a8a8a;
+    border: none;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 6px;
+    cursor: not-allowed;
+}
+
+/* No Results */
+.no-results {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.no-results p {
+    font-size: 16px;
+    color: #6a6a6a;
+    margin: 0;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .subjects-header {
+        padding: 16px 20px;
+    }
+
+    .app-name {
+        font-size: 16px;
+    }
+
+    .contributions-btn {
+        display: none;
+    }
+
+    .subjects-container {
+        padding: 24px 20px 60px;
+    }
+
+    .page-title {
+        font-size: 24px;
+    }
+
+    .page-subtitle {
+        font-size: 14px;
+    }
+
+    .subjects-grid,
+    .skeleton-grid {
+        grid-template-columns: 1fr;
+    }
+}

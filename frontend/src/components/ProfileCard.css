@@ -1,0 +1,87 @@
+/* Profile Card Styles */
+
+.profile-card {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 48px 32px;
+    text-align: center;
+    max-width: 500px;
+    margin: 0 auto 40px;
+}
+
+.profile-avatar-large {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    background-color: #4285f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 24px;
+    overflow: hidden;
+}
+
+.avatar-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.avatar-initials {
+    color: #ffffff;
+    font-size: 40px;
+    font-weight: 600;
+}
+
+.profile-name {
+    font-size: 28px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin: 0 0 8px 0;
+}
+
+.profile-email {
+    font-size: 15px;
+    color: #8a8a8a;
+    margin: 0 0 24px 0;
+}
+
+.profile-contribution-count {
+    font-size: 16px;
+    color: #4a4a4a;
+    margin: 0;
+    padding: 16px 24px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    display: inline-block;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .profile-card {
+        padding: 40px 24px;
+    }
+
+    .profile-avatar-large {
+        width: 80px;
+        height: 80px;
+    }
+
+    .avatar-initials {
+        font-size: 32px;
+    }
+
+    .profile-name {
+        font-size: 24px;
+    }
+
+    .profile-email {
+        font-size: 14px;
+    }
+
+    .profile-contribution-count {
+        font-size: 15px;
+        padding: 14px 20px;
+    }
+}
