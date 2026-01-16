@@ -86,11 +86,11 @@ const SubjectInsights: React.FC = () => {
 
     const isBootstrapping = insights ? insights.paperCount < 5 : false;
 
-    const handleGeneratePaper = () => {
+    const handleGeneratePaper = (type: 'MTE' | 'ETE') => {
         if (!insights) return;
 
         // Generate the paper in university format
-        const paper = generateUniversityPaper(insights.subject, insights);
+        const paper = generateUniversityPaper(insights.subject, insights, type);
         const paperHtml = generateUniversityPaperHTML(paper);
 
         // Open in new window for printing
@@ -209,12 +209,12 @@ const SubjectInsights: React.FC = () => {
         <div className="insights-page">
             <header className="insights-header">
                 <div className="header-left">
-                    <h1 className="app-name">Exam Intelligence</h1>
+                    <button className="back-button" onClick={() => navigate(-1)}>
+                        <span className="back-icon">←</span> Back
+                    </button>
                 </div>
                 <div className="header-center">
-                    <button className="back-button" onClick={() => navigate('/subjects')}>
-                        ← Subjects
-                    </button>
+                    {/* Center content if any */}
                 </div>
                 <div className="header-right">
                     <div className="user-avatar" onClick={() => navigate('/profile')} style={{ cursor: 'pointer' }}>
@@ -248,9 +248,14 @@ const SubjectInsights: React.FC = () => {
                             ? 'Insights are based on limited data and will improve as more papers are added'
                             : 'Insights are statistically reliable'}
                     </div>
-                    <button className="generate-paper-btn" onClick={handleGeneratePaper}>
-                        📄 Generate Practice Paper
-                    </button>
+                    <div className="paper-actions" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginTop: '24px' }}>
+                        <button className="generate-paper-btn mte" onClick={() => handleGeneratePaper('MTE')}>
+                            📄 Generate MTE Paper
+                        </button>
+                        <button className="generate-paper-btn ete" onClick={() => handleGeneratePaper('ETE')}>
+                            🎓 Generate ETE Paper
+                        </button>
+                    </div>
                 </div>
 
                 {/* Insight Sections */}

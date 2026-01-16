@@ -143,25 +143,43 @@
     border-color: #fbbc04;
 }
 
-/* Generate Practice Paper Button */
+/* Generate Practice Paper Buttons */
 .generate-paper-btn {
     width: 100%;
-    margin-top: 16px;
-    padding: 14px 24px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 16px 24px;
     color: #ffffff;
     border: none;
     border-radius: 8px;
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
 }
 
-.generate-paper-btn:hover {
+.generate-paper-btn.mte {
+    background: #1a1a1a;
+}
+
+.generate-paper-btn.mte:hover {
+    background: #000000;
     transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.generate-paper-btn.ete {
+    background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+    /* Premium Blue */
+}
+
+.generate-paper-btn.ete:hover {
+    background: linear-gradient(135deg, #172554 0%, #1e3a8a 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(30, 58, 138, 0.25);
 }
 
 .generate-paper-btn:active {

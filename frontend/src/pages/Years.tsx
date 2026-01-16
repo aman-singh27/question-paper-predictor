@@ -28,11 +28,11 @@ const Years: React.FC = () => {
         <div className="years-page">
             <header className="years-header">
                 <div className="header-left">
-                    <h1 className="app-name">Exam Intelligence</h1>
+                    {/* App Name removed */}
                 </div>
                 <div className="header-center">
                     <button className="back-button" onClick={() => navigate('/branches')}>
-                        ← Branches
+                        <span className="back-icon">←</span> Back to Branches
                     </button>
                 </div>
                 <div className="header-right">

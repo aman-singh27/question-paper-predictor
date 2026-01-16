@@ -25,7 +25,9 @@ const Branches: React.FC = () => {
         <div className="branches-page">
             <header className="branches-header">
                 <div className="header-left">
-                    <h1 className="app-name">Exam Intelligence</h1>
+                    <button className="back-button" onClick={() => navigate('/')}>
+                        <span className="back-icon">←</span> Back to Home
+                    </button>
                 </div>
                 <div className="header-right">
                     <div className="user-avatar" onClick={() => navigate('/profile')} style={{ cursor: 'pointer' }}>

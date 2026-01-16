@@ -1,16 +1,17 @@
-/* Branches Page */
+/* Branches Page - Premium Design */
 .branches-page {
-    background-color: #ffffff;
+    background-color: #f8f9fa;
     min-height: 100vh;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
 }
 
 .branches-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 40px;
-    border-bottom: 1px solid #e0e0e0;
+    padding: 24px 40px;
+    background-color: #ffffff;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .header-left {
@@ -18,9 +19,10 @@
 }
 
 .app-name {
-    font-size: 18px;
-    font-weight: 600;
+    font-size: 20px;
+    font-weight: 700;
     color: #1a1a1a;
+    letter-spacing: -0.5px;
     margin: 0;
 }
 
@@ -33,101 +35,169 @@
     width: 36px;
     height: 36px;
     border-radius: 50%;
-    background-color: #4285f4;
+    background-color: #1a1a1a;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #ffffff;
-    font-weight: 600;
+    color: #fff;
+    font-weight: 500;
     font-size: 14px;
+    transition: transform 0.2s ease;
 }
 
 .branches-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 60px 40px;
+    padding: 80px 40px;
 }
 
 .page-header {
     text-align: center;
-    margin-bottom: 48px;
+    margin-bottom: 60px;
 }
 
 .page-header h2 {
-    font-size: 36px;
-    font-weight: 700;
+    font-size: 42px;
+    font-weight: 800;
     color: #1a1a1a;
-    margin: 0 0 12px 0;
+    letter-spacing: -1px;
+    margin: 0 0 16px 0;
 }
 
 .page-header p {
     font-size: 18px;
-    color: #6a6a6a;
+    color: #666;
     margin: 0;
+    line-height: 1.6;
 }
 
 .branches-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 24px;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 32px;
 }
 
 .branch-card {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    /* SOLID Premium Color - Deep Slate Blue / Midnight */
+    background-color: #1e293b;
     border-radius: 16px;
     padding: 32px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     position: relative;
     overflow: hidden;
+    height: 280px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .branch-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 12px 24px rgba(102, 126, 234, 0.3);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    /* Slightly lighter on hover */
+    background-color: #334155;
 }
 
 .branch-card.coming-soon {
-    background: linear-gradient(135deg, #e0e0e0 0%, #bdbdbd 100%);
+    background-color: #ffffff;
+    border: 1px dashed #e0e0e0;
     cursor: not-allowed;
-    opacity: 0.7;
+    opacity: 0.8;
+}
+
+.branch-card.coming-soon h3 {
+    color: #999;
+}
+
+.branch-card.coming-soon .branch-code {
+    color: #f5f5f5;
 }
 
 .branch-card.coming-soon:hover {
     transform: none;
     box-shadow: none;
+    background-color: #ffffff;
 }
 
 .branch-code {
     font-size: 48px;
     font-weight: 800;
-    color: rgba(255, 255, 255, 0.3);
-    margin-bottom: 16px;
+    color: rgba(255, 255, 255, 0.1);
+    margin-bottom: auto;
+    letter-spacing: 1px;
 }
 
 .branch-name {
-    font-size: 20px;
-    font-weight: 600;
+    font-size: 24px;
+    font-weight: 700;
     color: #ffffff;
     margin: 0 0 8px 0;
+    letter-spacing: -0.5px;
+    z-index: 1;
 }
 
 .branch-description {
-    font-size: 14px;
-    color: rgba(255, 255, 255, 0.9);
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.7);
     margin: 0;
+    line-height: 1.5;
+    z-index: 1;
 }
 
 .coming-soon-badge {
     position: absolute;
-    top: 16px;
-    right: 16px;
-    background-color: rgba(255, 255, 255, 0.2);
-    color: #ffffff;
+    top: 24px;
+    right: 24px;
+    background-color: rgba(0, 0, 0, 0.05);
+    color: #999;
     padding: 6px 12px;
-    border-radius: 12px;
+    border-radius: 100px;
     font-size: 12px;
     font-weight: 600;
+}
+
+/* Back Button - Consistent Style */
+.back-button {
+    background-color: transparent;
+    color: #1a1a1a;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.back-button:hover {
+    background-color: #f1f5f9;
+    border-color: #1a1a1a;
+    transform: translateY(-1px);
+}
+
+.branch-description {
+    font-size: 15px;
+    color: #666;
+    margin: 0;
+    line-height: 1.6;
+}
+
+.coming-soon-badge {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    background-color: #f5f5f5;
+    color: #666;
+    padding: 6px 12px;
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
 }
 
 @media (max-width: 768px) {
@@ -136,7 +206,7 @@
     }
 
     .page-header h2 {
-        font-size: 28px;
+        font-size: 32px;
     }
 
     .branches-grid {

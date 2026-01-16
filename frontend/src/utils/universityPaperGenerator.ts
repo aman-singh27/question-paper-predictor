@@ -1,39 +1,51 @@
-// Enhanced paper generation matching actual university exam format
+// Enhanced paper generation matching actual university exam format (MTE & ETE)
 
 export function generateUniversityPaper(
     subject: string,
     insights: any,
-    semester: string = 'V',
-    examType: string = 'Mid Term',
-    totalMarks: number = 30
+    paperType: 'MTE' | 'ETE' = 'MTE'
 ): any {
     const currentDate = new Date();
     const month = currentDate.toLocaleString('default', { month: 'long' });
     const year = currentDate.getFullYear();
+    const semester = 'V'; // Defaulting to V for now as per context
+
+    const isMTE = paperType === 'MTE';
+    const totalMarks = isMTE ? 30 : 80;
+    const duration = isMTE ? '1.5 hrs' : '03 hrs';
 
     return {
         header: {
-            university: 'Faculty of Science, Technology and Architecture',
-            school: 'School of Computer Science and Engineering',
+            university: 'Faculty of Engineering, School of Computer Science and Engineering',
             department: 'Department of Artificial Intelligence and Machine Learning',
-            program: 'B.Tech. (CSE) - AIML',
+            program: 'B. Tech-CSE (AIML)',
             courseCode: generateCourseCode(subject),
             courseName: subject,
             semester: semester,
-            examTitle: `${examType} Examination, ${month} ${year}`,
-            duration: '1.5 hrs',
+            examTitle: `${isMTE ? 'Mid Term' : 'End Term'} Examination, ${month} ${year}`,
+            duration: duration,
             maxMarks: totalMarks,
         },
         instructions: [
             'All questions are compulsory.',
             'Missing data, if any, may be assumed suitably.',
-            'Calculator is allowed.',
+            'Scientific Calculator is allowed.',
         ],
-        sections: {
-            sectionA: generateSectionA(subject, insights),
-            sectionB: generateSectionB(subject, insights),
-            sectionC: generateSectionC(subject, insights),
-        },
+        sections: isMTE
+            ? {
+                // MTE Structure (30 Marks)
+                sectionA: generateSectionA_MTE(subject, insights),
+                sectionB: generateSectionB_MTE(subject, insights),
+                sectionC: generateSectionC_MTE(subject, insights),
+            }
+            : {
+                // ETE Structure (80 Marks)
+                sectionA: generateSectionA_ETE(subject, insights),
+                sectionB: generateSectionB_ETE(subject, insights),
+                sectionC: generateSectionC_ETE(subject, insights),
+                sectionD: generateSectionD_ETE(subject, insights),
+            },
+        paperType: paperType,
         generatedAt: new Date(),
     };
 }
@@ -46,45 +58,31 @@ function generateCourseCode(subject: string): string {
         'Data Structures & Algorithms': 'CSE2010',
         'Software Engineering': 'CSE4010',
     };
-    return codes[subject] || 'CSE3XXX';
+    return codes[subject] || 'Al-3104';
 }
 
-function generateSectionA(subject: string, insights: any) {
+// --- MTE GENERATORS (Original 30 Marks) ---
+
+function generateSectionA_MTE(subject: string, _insights: any) {
     return {
         title: 'SECTION A (Memory Based Questions)',
         subtitle: '(20-30 words Answers)',
         questions: [
             {
                 number: 'A1',
-                parts: [
-                    {
-                        text: `Match the following terms related to ${subject.toLowerCase()} with their descriptions:`,
-                        type: 'matching',
-                        marks: '0.5*4',
-                    },
-                ],
+                parts: [{ text: `Match the following terms related to ${subject.toLowerCase()} with their descriptions:`, type: 'matching', marks: '0.5*4' }],
                 totalMarks: 2,
                 co: 'CO1',
             },
             {
                 number: 'A2',
-                parts: [
-                    {
-                        text: getShortAnswerQuestion(subject, insights, 1),
-                        marks: '1*2',
-                    },
-                ],
+                parts: [{ text: getShortAnswerQuestion(subject, 1), marks: '1*2' }],
                 totalMarks: 2,
                 co: 'CO2',
             },
             {
                 number: 'A3',
-                parts: [
-                    {
-                        text: getShortAnswerQuestion(subject, insights, 2),
-                        marks: '1*2',
-                    },
-                ],
+                parts: [{ text: getShortAnswerQuestion(subject, 2), marks: '1*2' }],
                 totalMarks: 2,
                 co: 'CO1',
             },
@@ -93,73 +91,21 @@ function generateSectionA(subject: string, insights: any) {
     };
 }
 
-function generateSectionB(subject: string, insights: any) {
+function generateSectionB_MTE(subject: string, _insights: any) {
     return {
         title: 'SECTION B (Concept Based Questions)',
         subtitle: '(Maximum 150-200 Words Answers)',
         questions: [
-            {
-                number: 'B1',
-                parts: [
-                    {
-                        text: getConceptQuestion(subject, insights, 1),
-                        subparts: [
-                            '(i) Calculate the required parameter.',
-                            '(ii) Compare with theoretical limits.',
-                        ],
-                        marks: '2+2',
-                    },
-                ],
-                totalMarks: 4,
-                co: 'CO2',
-            },
-            {
-                number: 'B2',
-                parts: [
-                    {
-                        text: getConceptQuestion(subject, insights, 2),
-                        marks: '1*4',
-                    },
-                ],
-                totalMarks: 4,
-                co: 'CO1',
-            },
-            {
-                number: 'B3',
-                parts: [
-                    {
-                        text: getConceptQuestion(subject, insights, 3),
-                        subparts: [
-                            'I. Compute the required bits.',
-                            'II. Verify the result.',
-                        ],
-                        marks: '2+2',
-                    },
-                ],
-                totalMarks: 4,
-                co: 'CO2',
-            },
-            {
-                number: 'B4',
-                parts: [
-                    {
-                        text: getConceptQuestion(subject, insights, 4),
-                        subparts: [
-                            '(i) Calculate the minimum requirement.',
-                            '(ii) Explain the necessity.',
-                        ],
-                        marks: '2+2',
-                    },
-                ],
-                totalMarks: 4,
-                co: 'CO2',
-            },
+            { number: 'B1', parts: [{ text: getConceptQuestion(subject, 1), subparts: ['(i) Calculate the required parameter.', '(ii) Compare with theoretical limits.'], marks: '2+2' }], totalMarks: 4, co: 'CO2' },
+            { number: 'B2', parts: [{ text: getConceptQuestion(subject, 2), marks: '1*4' }], totalMarks: 4, co: 'CO1' },
+            { number: 'B3', parts: [{ text: getConceptQuestion(subject, 3), subparts: ['I. Compute the required bits.', 'II. Verify the result.'], marks: '2+2' }], totalMarks: 4, co: 'CO2' },
+            { number: 'B4', parts: [{ text: getConceptQuestion(subject, 4), subparts: ['(i) Calculate the minimum requirement.', '(ii) Explain the necessity.'], marks: '2+2' }], totalMarks: 4, co: 'CO2' },
         ],
         maxMarks: 16,
     };
 }
 
-function generateSectionC(subject: string, insights: any) {
+function generateSectionC_MTE(subject: string, _insights: any) {
     return {
         title: 'SECTION-C (Analytical Based Questions)',
         subtitle: '(Maximum 300-350 words Answers)',
@@ -167,24 +113,8 @@ function generateSectionC(subject: string, insights: any) {
             {
                 number: 'C1',
                 parts: [
-                    {
-                        label: 'A)',
-                        text: getAnalyticalQuestion(subject, insights, 1),
-                        subparts: [
-                            'I. Construct the complete solution.',
-                            'II. Show error detection and correction.',
-                        ],
-                        marks: '2+2',
-                    },
-                    {
-                        label: 'B)',
-                        text: getAnalyticalQuestion(subject, insights, 2),
-                        subparts: [
-                            'I. Calculate the utilization.',
-                            'II. Compare different protocols and analyze.',
-                        ],
-                        marks: '2+2',
-                    },
+                    { label: 'A)', text: getAnalyticalQuestion(subject, 1), subparts: ['I. Construct the complete solution.', 'II. Show error detection and correction.'], marks: '2+2' },
+                    { label: 'B)', text: getAnalyticalQuestion(subject, 2), subparts: ['I. Calculate the utilization.', 'II. Compare different protocols and analyze.'], marks: '2+2' },
                 ],
                 totalMarks: 8,
                 co: 'CO2',
@@ -194,125 +124,171 @@ function generateSectionC(subject: string, insights: any) {
     };
 }
 
-function getShortAnswerQuestion(subject: string, insights: any, index: number): string {
+// --- ETE GENERATORS (New 80 Marks) ---
+
+function generateSectionA_ETE(subject: string, _insights: any) {
+    // 5 Questions x 2 Marks = 10 Marks
+    const questions = [];
+    for (let i = 1; i <= 5; i++) {
+        questions.push({
+            number: `Q${i}`,
+            parts: [{ text: getShortAnswerQuestion(subject, i + 3), marks: '2' }], // Offset index to get varied questions
+            totalMarks: 2,
+            co: i % 2 === 0 ? 'CO2' : 'CO1',
+        });
+    }
+    return {
+        title: 'SECTION A (Memory Based Questions)',
+        subtitle: '',
+        questions: questions,
+        maxMarks: 10,
+    };
+}
+
+function generateSectionB_ETE(subject: string, _insights: any) {
+    // 5 Questions x 6 Marks = 30 Marks
+    const questions = [];
+    for (let i = 6; i <= 10; i++) { // Q6 to Q10
+        questions.push({
+            number: `Q${i}`,
+            parts: [{ text: getConceptQuestion(subject, i - 1), marks: '6' }],
+            totalMarks: 6,
+            co: 'CO3', // As per sample
+        });
+    }
+    return {
+        title: 'SECTION B (Concept Based Questions)',
+        subtitle: '',
+        questions: questions,
+        maxMarks: 30,
+    };
+}
+
+function generateSectionC_ETE(subject: string, _insights: any) {
+    // 2 Questions x 10 Marks = 20 Marks (Analytical)
+    return {
+        title: 'SECTION-C (Analytical Based Questions)',
+        subtitle: '',
+        questions: [
+            {
+                number: 'Q11',
+                parts: [{ text: getAnalyticalQuestion(subject, 1), marks: '10' }],
+                totalMarks: 10,
+                co: 'CO4',
+            },
+            {
+                number: 'Q12',
+                parts: [{ text: getAnalyticalQuestion(subject, 2), marks: '10' }],
+                totalMarks: 10,
+                co: 'CO4',
+            },
+        ],
+        maxMarks: 20,
+    };
+}
+
+function generateSectionD_ETE(subject: string, _insights: any) {
+    // 2 Questions x 10 Marks = 20 Marks (Case Study)
+    return {
+        title: 'SECTION-D (Case Study/Application based Question)',
+        subtitle: '',
+        questions: [
+            {
+                number: 'Q13',
+                parts: [{ text: getCaseStudyQuestion(subject, 1), marks: '10' }],
+                totalMarks: 10,
+                co: 'CO5',
+            },
+            {
+                number: 'Q14',
+                parts: [{ text: getCaseStudyQuestion(subject, 2), marks: '10' }],
+                totalMarks: 10,
+                co: 'CO5',
+            },
+        ],
+        maxMarks: 20,
+    };
+}
+
+// --- QUESTION BANKS ---
+
+function getShortAnswerQuestion(subject: string, index: number): string {
     const questions: Record<string, string[]> = {
         'Computer Networks': [
-            'Draw the line coding waveform for Bipolar AMI and Differential Manchester for bit stream 1101001110 transmitted at 2 Mbps.',
-            'A data frame of 1101 is to be transmitted with even parity. Write the transmitted frame.',
-            'Explain the difference between circuit switching and packet switching with examples.',
+            'Define channel capacity.', 'What is the Hamming distance?', 'Define circuit switching.', 'What is a collision domain?', 'Define propagation delay.', 'What is the purpose of the NAV vector?', 'Define multiplexing.',
         ],
         'Operating Systems': [
-            'Draw the Gantt chart for FCFS scheduling with arrival times [0, 1, 2] and burst times [4, 3, 1].',
-            'Calculate the effective access time given TLB hit ratio = 80%, TLB access = 20ns, Memory access = 100ns.',
-            'Explain the difference between internal and external fragmentation.',
+            'Define a process.', 'What is a semaphore?', 'Define throughput.', 'What is a deadlock?', 'Define paging.', 'What is thrashing?', 'Define a thread.',
         ],
         'Database Management Systems': [
-            'Write an SQL query to find the second highest salary from an Employee table.',
-            'Normalize the given relation to 3NF showing all intermediate steps.',
-            'Explain the ACID properties with one example for each.',
+            'Define a primary key.', 'What is a foreign key?', 'Define normalization.', 'What is ACID?', 'Define a transaction.', 'What is concurrency?', 'Define hashing.',
         ],
     };
-    return questions[subject]?.[index] || 'Define the key concepts and their applications.';
+    const list = questions[subject] || ['Define confidence intervals.', 'Define the Chi-Square test.', 'How does a confusion matrix evaluate model performance?', 'What is market basket analysis?', 'What insights can be gained from a boxplot?'];
+    return list[index % list.length];
 }
 
-function getConceptQuestion(subject: string, insights: any, index: number): string {
+function getConceptQuestion(subject: string, index: number): string {
     const questions: Record<string, string[]> = {
         'Computer Networks': [
-            'A channel has a bandwidth of 4 kHz and SNR of 30 dB.',
-            'An ALOHA network transmits 600-bit frames on a shared channel of 600 kbps. The system generates traffic at 750 frames per second.',
-            'A data link uses CRC with divisor polynomial x³ + x + 1. The dataword is 1101.',
-            'In Ethernet using CSMA/CD, if propagation delay is 25 μs and data rate is 10 Mbps:',
+            'Compare and contrast Go-Back-N and Selective Repeat protocols.',
+            'Evaluate the use of CSMA/CD in Ethernet. What are its limitations?',
+            'Evaluate the impact of frame size on network efficiency.',
+            'Analyze the role of sliding window protocol in flow control.',
+            'Compare circuit switching and packet switching.',
         ],
         'Operating Systems': [
-            'A system has 3 processes with arrival times [0, 2, 4] and burst times [8, 4, 1]. Calculate average waiting time for SJF scheduling.',
-            'Given memory partitions [100K, 500K, 200K, 300K, 600K] and processes [212K, 417K, 112K, 426K], show First Fit and Best Fit allocation.',
-            'A system uses Banker\'s algorithm with 3 resource types. Given allocation and max matrices, determine if the system is in safe state.',
-            'Calculate the number of page faults for reference string [7,0,1,2,0,3,0,4,2,3,0,3,2] using FIFO with 3 frames.',
+            'Compare and contrast preemptive and non-preemptive scheduling.',
+            'Evaluate the use of Semaphores in process synchronization.',
+            'Analyze the Banker\'s algorithm for deadlock avoidance.',
+            'Evaluate the impact of page size on internal fragmentation.',
+            'Compare Paging and Segmentation memory management techniques.',
         ],
     };
-    return questions[subject]?.[index - 1] || 'Analyze the given scenario and provide detailed solution.';
+    const list = questions[subject] || [
+        'Compare and contrast estimates of location and estimates of variability.',
+        'Evaluate the use of ANOVA in comparing multiple groups.',
+        'Evaluate the impact of the rare class problem on model performance.',
+        'Evaluate the role of association analysis in market basket analysis.',
+        'Analyze the use of scatter plots and bar graphs in visualizing relationships.',
+    ];
+    return list[index % list.length];
 }
 
-function getAnalyticalQuestion(subject: string, insights: any, index: number): string {
+function getAnalyticalQuestion(subject: string, index: number): string {
     const questions: Record<string, string[]> = {
         'Computer Networks': [
-            'A dataword 1011001 is to be transmitted using Hamming code (even parity).',
-            'A link has Bandwidth = 1 Mbps, Propagation delay = 20 ms, Frame size = 1000 bits.',
+            'A channel has 1 Mbps bandwidth and 20ms delay. Calculate the window size for 100% utilization.',
+            'Apply CRC algorithm for data 101101 and divisor 1101. Check for errors if received frame is 101101000.',
         ],
         'Operating Systems': [
-            'A system has 5 processes and 3 resource types A(10), B(5), C(7). Given allocation and max matrices, apply Banker\'s algorithm.',
-            'A disk queue has requests [98, 183, 37, 122, 14, 124, 65, 67] and head at 53. Compare FCFS, SSTF, and SCAN algorithms.',
+            'Given processes P1-P4 with burst times 5, 3, 8, 6. Calculate Average Waiting Time using SJF.',
+            'Consider reference string 7,0,1,2,0,3,0,4... Calculate page faults using LRU with 3 frames.',
         ],
     };
-    return questions[subject]?.[index - 1] || 'Solve the comprehensive problem showing all steps and analysis.';
+    const list = questions[subject] || [
+        'A soft drink company claims average soda is 500ml. Sample of 25 bottles has mean 495ml (SD=10). Test at 5% significance.',
+        'Four brands of batteries compared. 20 flashlights randomly assigned. Test difference in mean lifetime (ANOVA).',
+    ];
+    return list[index % list.length];
 }
 
-export function formatUniversityPaper(paper: any): string {
-    let output = `
-═══════════════════════════════════════════════════════════════════════════════
-                                 EXAMINATION PAPER
-═══════════════════════════════════════════════════════════════════════════════
-
-Name: _______________________
-Enrolment No: _______________
-
-${paper.header.examTitle}
-${paper.header.university}
-${paper.header.school}
-${paper.header.department}
-${paper.header.program}
-
-Course Code: ${paper.header.courseCode}          Course: ${paper.header.courseName}          Semester: ${paper.header.semester}
-Time: ${paper.header.duration}                                                      Max. Marks: ${paper.header.maxMarks}
-
-Instructions:
-${paper.instructions.map((inst: string, i: number) => `  ${i + 1}. ${inst}`).join('\n')}
-
-═══════════════════════════════════════════════════════════════════════════════
-
-${paper.sections.sectionA.title}
-${paper.sections.sectionA.subtitle}
-
-${paper.sections.sectionA.questions.map((q: any) => `
-Q ${q.number}    ${q.parts.map((p: any) => p.text).join('\n         ')}
-         ${q.parts.map((p: any) => `[${p.marks} Marks]`).join(' ')}
-         Max Marks: ${q.totalMarks}    CO: ${q.co}
-`).join('\n')}
-
-───────────────────────────────────────────────────────────────────────────────
-
-${paper.sections.sectionB.title}
-${paper.sections.sectionB.subtitle}
-
-${paper.sections.sectionB.questions.map((q: any) => `
-Q ${q.number}    ${q.parts[0].text}
-         ${q.parts[0].subparts ? q.parts[0].subparts.join('\n         ') : ''}
-         [${q.parts[0].marks} Marks]
-         Max Marks: ${q.totalMarks}    CO: ${q.co}
-`).join('\n')}
-
-───────────────────────────────────────────────────────────────────────────────
-
-${paper.sections.sectionC.title}
-${paper.sections.sectionC.subtitle}
-
-${paper.sections.sectionC.questions.map((q: any) => `
-Q ${q.number}    ${q.parts.map((part: any) => `
-         ${part.label} ${part.text}
-         ${part.subparts.join('\n         ')}
-         [${part.marks} Marks]
-`).join('\n')}
-         Max Marks: ${q.totalMarks}    CO: ${q.co}
-`).join('\n')}
-
-═══════════════════════════════════════════════════════════════════════════════
-                                  END OF PAPER
-═══════════════════════════════════════════════════════════════════════════════
-
-Generated on: ${paper.generatedAt.toLocaleDateString()} at ${paper.generatedAt.toLocaleTimeString()}
-`;
-
-    return output;
+function getCaseStudyQuestion(subject: string, index: number): string {
+    const questions: Record<string, string[]> = {
+        'Computer Networks': [
+            'Design a subnet mask for a company requiring 50 subnets with 1000 hosts each. Show calculations.',
+            'Analyze a scenario where a network suffers from congestion. Propose mechanisms to control it using TCP.',
+        ],
+        'Operating Systems': [
+            'Given a snapshot of a system with Resource Allocation Graph, determine if there is a deadlock. Justify.',
+            'Design a file system layout for a multimedia server. optimize for large sequential reads.',
+        ],
+    };
+    const list = questions[subject] || [
+        'Given dataset points A(1,2), B(2,2), C(3,3)... Perform hierarchical clustering using average linkage.',
+        'Given transaction ID 1-6 with items (Apple, Banana...). Identify top 3 association rules using Apriori (Support 0.3, Conf 0.7).',
+    ];
+    return list[index % list.length];
 }
 
 export function generateUniversityPaperHTML(paper: any): string {
@@ -334,6 +310,7 @@ export function generateUniversityPaperHTML(paper: any): string {
             max-width: 210mm;
             margin: 0 auto;
             background: white;
+            padding: 20px;
         }
         .header-table {
             width: 100%;
@@ -353,9 +330,9 @@ export function generateUniversityPaperHTML(paper: any): string {
             text-align: center;
             font-weight: bold;
             margin-bottom: 20px;
-            font-size: 12pt;
+            font-size: 11pt;
+            line-height: 1.4;
         }
-        .university-header div { margin-bottom: 2px; }
         
         .exam-meta-table {
             width: 100%;
@@ -371,6 +348,7 @@ export function generateUniversityPaperHTML(paper: any): string {
         .instructions {
             margin-bottom: 20px;
             padding-left: 0;
+            font-size: 10pt;
         }
         .instructions div { margin-bottom: 2px; }
         
@@ -428,36 +406,22 @@ export function generateUniversityPaperHTML(paper: any): string {
     </style>
 </head>
 <body onload="window.print()">
-    <!-- Student Details Header -->
-    <table class="header-table" style="margin-bottom: 15px;">
-        <tr>
-            <td style="width: 50%;">Name: __________________________</td>
-            <td style="text-align: right;">Enrolment No: __________________</td>
-        </tr>
-    </table>
-
     <!-- University Header -->
     <div class="university-header">
         <div>${paper.header.examTitle}</div>
         <div>${paper.header.university}</div>
-        <div>${paper.header.school}</div>
         <div>${paper.header.department}</div>
         <div>${paper.header.program}</div>
+        <div style="margin-top: 10px;">
+            Course Code: ${paper.header.courseCode} <br>
+            Course: ${paper.header.courseName} <br>
+            Semester: ${paper.header.semester}
+        </div>
+        <div style="display: flex; justify-content: space-between; margin-top: 10px; border-bottom: 1px solid black; padding-bottom: 5px;">
+            <span>Time: ${paper.header.duration}</span>
+            <span>Max. Marks: ${paper.header.maxMarks}</span>
+        </div>
     </div>
-
-    <!-- Course Meta -->
-    <table class="exam-meta-table">
-        <tr>
-            <td style="width: 25%;">Course Code: ${paper.header.courseCode}</td>
-            <td style="width: 50%; text-align: center;">Course: ${paper.header.courseName}</td>
-            <td style="width: 25%; text-align: right;">Semester: ${paper.header.semester}</td>
-        </tr>
-        <tr>
-            <td>Time: ${paper.header.duration}</td>
-            <td></td>
-            <td style="text-align: right;">Max. Marks: ${paper.header.maxMarks}</td>
-        </tr>
-    </table>
 
     <!-- Instructions -->
     <div class="instructions">
@@ -466,87 +430,16 @@ export function generateUniversityPaperHTML(paper: any): string {
     </div>
 
     <!-- Section A -->
-    <div class="section-header">
-        ${paper.sections.sectionA.title}
-        <div class="section-subtitle">${paper.sections.sectionA.subtitle}</div>
-    </div>
-    
-    <table class="question-table">
-        <thead>
-            <tr>
-                <th class="col-sno">S. No.</th>
-                <th></th>
-                <th class="col-marks">Marks</th>
-                <th class="col-co">CO</th>
-            </tr>
-        </thead>
-        <tbody>
-            ${paper.sections.sectionA.questions.map((q: any) => `
-                <tr>
-                    <td class="font-bold">Q ${q.number}</td>
-                    <td>
-                        ${q.parts.map((p: any) => `
-                            <div style="margin-bottom: 5px;">${p.text}</div>
-                        `).join('')}
-                    </td>
-                    <td class="col-marks">[${q.parts[0].marks}]</td>
-                    <td class="text-right">${q.co}</td>
-                </tr>
-            `).join('')}
-        </tbody>
-    </table>
+    ${paper.sections.sectionA ? renderSection(paper.sections.sectionA) : ''}
 
     <!-- Section B -->
-    <div class="section-header">
-        ${paper.sections.sectionB.title}
-        <div class="section-subtitle">${paper.sections.sectionB.subtitle}</div>
-    </div>
-
-    <table class="question-table">
-        <tbody>
-            ${paper.sections.sectionB.questions.map((q: any) => `
-                <tr>
-                    <td class="col-sno font-bold">Q ${q.number}</td>
-                    <td>
-                        ${q.parts.map((p: any) => `
-                            <div style="margin-bottom: 8px;">
-                                ${p.text}
-                                ${p.subparts ? p.subparts.map((sp: string) => `<div class="sub-question">${sp}</div>`).join('') : ''}
-                            </div>
-                        `).join('')}
-                    </td>
-                    <td class="col-marks">[${q.parts[0].marks}]</td>
-                    <td class="col-co text-right">${q.co}</td>
-                </tr>
-            `).join('')}
-        </tbody>
-    </table>
+    ${paper.sections.sectionB ? renderSection(paper.sections.sectionB) : ''}
 
     <!-- Section C -->
-    <div class="section-header">
-        ${paper.sections.sectionC.title}
-        <div class="section-subtitle">${paper.sections.sectionC.subtitle}</div>
-    </div>
+    ${paper.sections.sectionC ? renderSection(paper.sections.sectionC) : ''}
 
-    <table class="question-table">
-        <tbody>
-            ${paper.sections.sectionC.questions.map((q: any) => `
-                <tr>
-                    <td class="col-sno font-bold">Q ${q.number}</td>
-                    <td>
-                        ${q.parts.map((p: any) => `
-                            <div style="margin-bottom: 15px;">
-                                <div style="margin-bottom: 5px;"><strong>${p.label || ''}</strong> ${p.text}</div>
-                                ${p.subparts ? p.subparts.map((sp: string) => `<div class="sub-question">${sp}</div>`).join('') : ''}
-                            </div>
-                        `).join('')}
-                    </td>
-                    <td class="col-marks">[${q.parts.map((p: any) => p.marks).join(' + ')}]</td>
-                    <td class="col-co text-right">${q.co}</td>
-                </tr>
-            `).join('')}
-        </tbody>
-    </table>
+    <!-- Section D (ETE Only) -->
+    ${paper.sections.sectionD ? renderSection(paper.sections.sectionD) : ''}
     
     <div style="text-align: center; margin-top: 30px;">******</div>
 </body>
@@ -554,3 +447,39 @@ export function generateUniversityPaperHTML(paper: any): string {
     `;
 }
 
+function renderSection(section: any): string {
+    return `
+    <div class="section-header">
+        ${section.title}
+        ${section.subtitle ? `<div class="section-subtitle">${section.subtitle}</div>` : ''}
+    </div>
+    
+    <table class="question-table">
+        <thead>
+            <tr>
+                <th class="col-sno">S.No.</th>
+                <th></th>
+                <th class="col-marks">Marks</th>
+                <th class="col-co">CO</th>
+            </tr>
+        </thead>
+        <tbody>
+            ${section.questions.map((q: any) => `
+                <tr>
+                    <td class="font-bold">${q.number}</td>
+                    <td>
+                        ${q.parts.map((p: any) => `
+                            <div style="margin-bottom: 5px;">
+                                ${p.label || ''} ${p.text}
+                                ${p.subparts ? p.subparts.map((sp: string) => `<div class="sub-question">${sp}</div>`).join('') : ''}
+                            </div>
+                        `).join('')}
+                    </td>
+                    <td class="col-marks">${q.parts.length > 1 ? `[${q.parts.map((p: any) => p.marks).join('+')}]` : q.parts[0].marks}</td>
+                    <td class="text-right">${q.co}</td>
+                </tr>
+            `).join('')}
+        </tbody>
+    </table>
+    `;
+}

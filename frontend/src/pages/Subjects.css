@@ -22,6 +22,31 @@
     align-items: center;
 }
 
+.back-button {
+    background-color: transparent;
+    color: #4285f4;
+    border: none;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.back-button:hover {
+    color: #1f6fd8;
+    background-color: #e8f0fe;
+}
+
+.back-icon {
+    font-size: 18px;
+    line-height: 1;
+}
+
 .app-name {
     font-size: 18px;
     font-weight: 600;
@@ -125,10 +150,6 @@
     box-shadow: 0 1px 8px rgba(66, 133, 244, 0.24);
 }
 
-background-color: #ffffff;
-box-shadow: 0 2px 8px rgba(66, 133, 244, 0.15);
-}
-
 .search-input::placeholder {
     color: #9aa0a6;
 }
@@ -189,7 +210,6 @@ box-shadow: 0 2px 8px rgba(66, 133, 244, 0.15);
     box-shadow: 0 8px 16px rgba(66, 133, 244, 0.2);
     transform: translateY(-4px);
     background-color: #f8f9fa;
-}
 }
 
 .subject-card:hover::before {
@@ -260,7 +280,6 @@ from {
 to {
     opacity: 1;
     transform: translateX(0);
-}
 }
 
 .status-badge.ready {

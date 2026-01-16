@@ -177,7 +177,9 @@ const Subjects: React.FC = () => {
         <div className="subjects-page">
             <header className="subjects-header">
                 <div className="header-left">
-                    <h1 className="app-name">Exam Intelligence</h1>
+                    <button className="back-button" onClick={() => navigate(`/branch/${branchId}`)}>
+                        <span className="back-icon">←</span> Back
+                    </button>
                 </div>
                 <div className="header-right">
                     <button className="contributions-btn" disabled>
