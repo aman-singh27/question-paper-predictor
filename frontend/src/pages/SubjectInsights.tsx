@@ -9,7 +9,7 @@ import UploadModal from '../components/UploadModal';
 import LoadingState from '../components/states/LoadingState';
 import EmptyState from '../components/states/EmptyState';
 import ErrorState from '../components/states/ErrorState';
-import { generatePracticePaper, formatPaperAsText } from '../utils/paperGenerator';
+import { generateUniversityPaper, formatUniversityPaper } from '../utils/universityPaperGenerator';
 import './SubjectInsights.css';
 
 interface Insights {
@@ -89,16 +89,16 @@ const SubjectInsights: React.FC = () => {
     const handleGeneratePaper = () => {
         if (!insights) return;
 
-        // Generate the paper
-        const paper = generatePracticePaper(insights.subject, insights);
-        const paperText = formatPaperAsText(paper);
+        // Generate the paper in university format
+        const paper = generateUniversityPaper(insights.subject, insights);
+        const paperText = formatUniversityPaper(paper);
 
         // Create a blob and download
         const blob = new Blob([paperText], { type: 'text/plain' });
         const url = URL.createObjectURL(blob);
         const link = document.createElement('a');
         link.href = url;
-        link.download = `${insights.subject.replace(/\s+/g, '_')}_Practice_Paper.txt`;
+        link.download = `${insights.subject.replace(/\s+/g, '_')}_MTE_Paper.txt`;
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);

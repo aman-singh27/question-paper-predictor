@@ -124,8 +124,9 @@
     background-color: #ffffff;
     box-shadow: 0 1px 8px rgba(66, 133, 244, 0.24);
 }
-    background-color: #ffffff;
-    box-shadow: 0 2px 8px rgba(66, 133, 244, 0.15);
+
+background-color: #ffffff;
+box-shadow: 0 2px 8px rgba(66, 133, 244, 0.15);
 }
 
 .search-input::placeholder {
@@ -250,14 +251,16 @@
     border: 1px solid;
     animation: slideInFromLeft 0.3s cubic-bezier(0.2, 0, 0.13, 1);
 }
-    from {
-        opacity: 0;
-        transform: translateX(10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
+
+from {
+    opacity: 0;
+    transform: translateX(10px);
+}
+
+to {
+    opacity: 1;
+    transform: translateX(0);
+}
 }
 
 .status-badge.ready {
@@ -302,6 +305,7 @@
     0% {
         background-position: 200% 0;
     }
+
     100% {
         background-position: -200% 0;
     }
@@ -391,4 +395,21 @@
     .skeleton-grid {
         grid-template-columns: 1fr;
     }
+}
+
+/* Coming Soon Styles */
+.status-badge.coming-soon {
+    background-color: #f1f3f4;
+    color: #5f6368;
+}
+
+.subject-card.coming-soon {
+    background-color: #fafafa;
+    border-style: dashed;
+    cursor: default;
+}
+
+.subject-card.coming-soon:hover {
+    box-shadow: none;
+    border-color: #e0e0e0;
 }
